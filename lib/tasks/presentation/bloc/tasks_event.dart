@@ -1,4 +1,5 @@
-part of 'tasks_bloc.dart';
+import 'package:flutter/material.dart';
+import 'package:imake/tasks/data/local/model/task_model.dart';
 
 @immutable
 sealed class TasksEvent {}
@@ -29,10 +30,8 @@ class DeleteTaskEvent extends TasksEvent {
   DeleteTaskEvent({required this.taskModel});
 }
 
-class SearchTaskEvent extends TasksEvent{
+class SearchTaskEvent extends TasksEvent {
   final String keywords;
 
   SearchTaskEvent({required this.keywords});
 }
-
-

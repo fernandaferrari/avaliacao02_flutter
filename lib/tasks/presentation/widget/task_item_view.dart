@@ -8,6 +8,7 @@ import '../../../utils/font_sizes.dart';
 import '../../../utils/util.dart';
 import '../../data/local/model/task_model.dart';
 import '../bloc/tasks_bloc.dart';
+import '../bloc/tasks_event.dart';
 
 class TaskItemView extends StatefulWidget {
   final TaskModel taskModel;

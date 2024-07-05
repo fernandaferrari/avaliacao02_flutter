@@ -1,4 +1,5 @@
-part of 'tasks_bloc.dart';
+import 'package:flutter/material.dart';
+import 'package:imake/tasks/data/local/model/task_model.dart';
 
 @immutable
 sealed class TasksState {}
