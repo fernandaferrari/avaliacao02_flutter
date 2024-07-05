@@ -1,2 +1,0 @@
-# IMake - Projeto exemplo
-
