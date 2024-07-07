@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:imake/routes/pages.dart';
 import 'package:imake/tasks/data/local/model/task_model.dart';
+import 'package:imake/tasks/presentation/pages/about_dev_screen.dart';
 import 'package:imake/tasks/presentation/pages/new_task_screen.dart';
 import 'package:imake/tasks/presentation/pages/splash_screen.dart';
 import 'package:imake/tasks/presentation/pages/tasks_screen.dart';
@@ -26,6 +27,10 @@ Route onGenerateRoute(RouteSettings routeSettings) {
       final args = routeSettings.arguments as TaskModel;
       return MaterialPageRoute(
         builder: (context) => UpdateTaskScreen(taskModel: args),
+      );
+    case Pages.aboutDev:
+      return MaterialPageRoute(
+        builder: (context) => const AboutDevScreen(),
       );
     default:
       return MaterialPageRoute(
