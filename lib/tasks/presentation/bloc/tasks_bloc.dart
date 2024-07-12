@@ -1,20 +1,38 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:imake/tasks/data/local/model/user_model.dart';
+import 'package:imake/tasks/data/repository/login_repository.dart';
 import 'package:imake/tasks/presentation/bloc/tasks_event.dart';
 import 'package:imake/tasks/presentation/bloc/tasks_state.dart';
-
-import '../../data/local/model/task_model.dart';
 import '../../data/repository/task_repository.dart';
 
 class TasksBloc extends Bloc<TasksEvent, TasksState> {
   final TaskRepository taskRepository;
+  final LoginRepository loginRepository;
 
-  TasksBloc(this.taskRepository) : super(FetchTasksSuccess(tasks: const [])) {
+  TasksBloc(this.taskRepository, this.loginRepository)
+      : super(FetchTasksSuccess(tasks: const [])) {
+    on<LoginEvent>(_login);
     on<AddNewTaskEvent>(_addNewTask);
     on<FetchTaskEvent>(_fetchTasks);
     on<UpdateTaskEvent>(_updateTask);
     on<DeleteTaskEvent>(_deleteTask);
     on<SortTaskEvent>(_sortTasks);
     on<SearchTaskEvent>(_searchTasks);
+  }
+
+  _login(LoginEvent event, Emitter<TasksState> emit) async {
+    try {
+      //final user = await loginRepository.findUser(
+      //event.userModel.name, event.userModel.password);
+
+      //if (user == null) return emit(LoginFailure(error: "User não encontrado"));
+
+      UserModel user = new UserModel(name: "admin", password: "admin");
+
+      return emit(LoginSuccess(model: user));
+    } catch (exception) {
+      emit(LoginFailure(error: exception.toString()));
+    }
   }
 
   _addNewTask(AddNewTaskEvent event, Emitter<TasksState> emit) async {

@@ -1,8 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:imake/tasks/data/local/model/task_model.dart';
+import 'package:imake/tasks/data/local/model/user_model.dart';
 
 @immutable
 sealed class TasksState {}
+
+final class LoginSuccess extends TasksState {
+  final UserModel model;
+
+  LoginSuccess({required this.model});
+}
+
+final class LoginFailure extends TasksState {
+  final String error;
+
+  LoginFailure({required this.error});
+}
 
 final class FetchTasksSuccess extends TasksState {
   final List<TaskModel> tasks;

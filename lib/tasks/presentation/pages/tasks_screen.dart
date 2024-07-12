@@ -235,12 +235,19 @@ class _TasksScreenState extends State<TasksScreen> {
           ),
           bottomNavigationBar: BottomAppBar(
             height: size.height * 0.08,
-            child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-              IconButton(
-                onPressed: () => Navigator.pushNamed(context, Pages.aboutDev),
-                icon: const Icon(Icons.info),
-              )
-            ]),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  IconButton(
+                    onPressed: () =>
+                        Navigator.pushNamed(context, Pages.aboutDev),
+                    icon: const Icon(Icons.info),
+                  ),
+                  IconButton(
+                      onPressed: () =>
+                          Navigator.pushNamed(context, Pages.login),
+                      icon: const Icon(Icons.logout))
+                ]),
           ),
         ),
       ),

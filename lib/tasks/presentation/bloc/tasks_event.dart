@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:imake/tasks/data/local/model/task_model.dart';
+import 'package:imake/tasks/data/local/model/user_model.dart';
 
 @immutable
 sealed class TasksEvent {}
+
+class LoginEvent extends TasksEvent {
+  final UserModel userModel;
+
+  LoginEvent({required this.userModel});
+}
 
 class AddNewTaskEvent extends TasksEvent {
   final TaskModel taskModel;

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:imake/tasks/data/local/data_sources/login_data_provider.dart';
+import 'package:imake/tasks/data/repository/login_repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:imake/routes/app_router.dart';
 import 'package:imake/bloc_state_observer.dart';
@@ -26,23 +28,31 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RepositoryProvider(
-        create: (context) =>
-            TaskRepository(taskDataProvider: TaskDataProvider(preferences)),
-        child: BlocProvider(
-            create: (context) => TasksBloc(context.read<TaskRepository>()),
-            child: MaterialApp(
-              title: 'IMake - Gerenciador de Tarefas',
-              debugShowCheckedModeBanner: false,
-              initialRoute: Pages.initial,
-              onGenerateRoute: onGenerateRoute,
-              theme: ThemeData(
-                fontFamily: 'Sora',
-                visualDensity: VisualDensity.adaptivePlatformDensity,
-                canvasColor: Colors.transparent,
-                colorScheme: ColorScheme.fromSeed(seedColor: kPrimaryColor),
-                useMaterial3: true,
-              ),
-            )));
+    return MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider(
+            create: (context) => TaskRepository(
+                taskDataProvider: TaskDataProvider(preferences))),
+        RepositoryProvider(
+            create: (context) => LoginRepository(
+                loginDataProvider: LoginDataProvider(preferences)))
+      ],
+      child: BlocProvider(
+          create: (context) => TasksBloc(
+              context.read<TaskRepository>(), context.read<LoginRepository>()),
+          child: MaterialApp(
+            title: 'IMake - Gerenciador de Tarefas',
+            debugShowCheckedModeBanner: false,
+            initialRoute: Pages.initial,
+            onGenerateRoute: onGenerateRoute,
+            theme: ThemeData(
+              fontFamily: 'Sora',
+              visualDensity: VisualDensity.adaptivePlatformDensity,
+              canvasColor: Colors.transparent,
+              colorScheme: ColorScheme.fromSeed(seedColor: kPrimaryColor),
+              useMaterial3: true,
+            ),
+          )),
+    );
   }
 }
