@@ -53,18 +53,32 @@ class _TasksScreenState extends State<TasksScreen> {
                 elevation: 1,
                 onSelected: (value) {
                   switch (value) {
-                    case 0:
+                    case 1:
                       {
                         context
                             .read<TasksBloc>()
                             .add(SortTaskEvent(sortOption: 1));
                         break;
                       }
-                    case 1:
+                    case 2:
                       {
                         context
                             .read<TasksBloc>()
                             .add(SortTaskEvent(sortOption: 2));
+                        break;
+                      }
+                    case 3:
+                      {
+                        context
+                            .read<TasksBloc>()
+                            .add(SortTaskEvent(sortOption: 3));
+                        break;
+                      }
+                    case 4:
+                      {
+                        context
+                            .read<TasksBloc>()
+                            .add(SortTaskEvent(sortOption: 4));
                         break;
                       }
                   }
@@ -113,6 +127,48 @@ class _TasksScreenState extends State<TasksScreen> {
                         ],
                       ),
                     ),
+                    PopupMenuItem<int>(
+                      value: 3,
+                      child: Row(
+                        children: [
+                          SvgPicture.asset(
+                            'assets/svgs/calender.svg',
+                            width: 15,
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          buildText(
+                              'Data inicial',
+                              kBlackColor,
+                              textSmall,
+                              FontWeight.normal,
+                              TextAlign.start,
+                              TextOverflow.clip)
+                        ],
+                      ),
+                    ),
+                    PopupMenuItem<int>(
+                      value: 4,
+                      child: Row(
+                        children: [
+                          SvgPicture.asset(
+                            'assets/svgs/calender.svg',
+                            width: 15,
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          buildText(
+                              'Data final',
+                              kBlackColor,
+                              textSmall,
+                              FontWeight.normal,
+                              TextAlign.start,
+                              TextOverflow.clip)
+                        ],
+                      ),
+                    )
                   ];
                 },
                 child: Padding(
