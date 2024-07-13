@@ -26,6 +26,7 @@ class UpdateTaskScreen extends StatefulWidget {
 class _UpdateTaskScreenState extends State<UpdateTaskScreen> {
   TextEditingController title = TextEditingController();
   TextEditingController description = TextEditingController();
+  TextEditingController detail = TextEditingController();
 
   CalendarFormat _calendarFormat = CalendarFormat.month;
   DateTime _focusedDay = DateTime.now();
@@ -170,6 +171,22 @@ class _UpdateTaskScreenState extends State<UpdateTaskScreen> {
                               fillColor: kWhiteColor,
                               onChange: (value) {}),
                           const SizedBox(height: 20),
+                          buildText(
+                              'Detalhes',
+                              kBlackColor,
+                              textMedium,
+                              FontWeight.bold,
+                              TextAlign.start,
+                              TextOverflow.clip),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          BuildTextField(
+                              hint: "Task Detail",
+                              controller: detail,
+                              inputType: TextInputType.multiline,
+                              fillColor: kWhiteColor,
+                              onChange: (value) {}),
                           SizedBox(
                             width: size.width,
                             child: ElevatedButton(
@@ -195,7 +212,8 @@ class _UpdateTaskScreenState extends State<UpdateTaskScreen> {
                                       description: description.text,
                                       completed: widget.taskModel.completed,
                                       startDateTime: _rangeStart,
-                                      stopDateTime: _rangeEnd);
+                                      stopDateTime: _rangeEnd,
+                                      detail: detail.text);
                                   context.read<TasksBloc>().add(
                                       UpdateTaskEvent(taskModel: taskModel));
                                 },

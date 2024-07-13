@@ -50,6 +50,9 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
       if (event.taskModel.stopDateTime == null) {
         return emit(AddTaskFailure(error: 'Faltou a data de fim'));
       }
+      if (event.taskModel.detail.trim().isEmpty) {
+        return emit(AddTaskFailure(error: 'Faltou os detalhes'));
+      }
       await taskRepository.createNewTask(event.taskModel);
       emit(AddTasksSuccess());
       final tasks = await taskRepository.getTasks();
@@ -82,6 +85,9 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
       }
       if (event.taskModel.stopDateTime == null) {
         return emit(UpdateTaskFailure(error: 'Faltou a data de fim'));
+      }
+      if (event.taskModel.detail.trim().isEmpty) {
+        return emit(AddTaskFailure(error: 'Faltou os detalhes'));
       }
       emit(TasksLoading());
       final tasks = await taskRepository.updateTask(event.taskModel);

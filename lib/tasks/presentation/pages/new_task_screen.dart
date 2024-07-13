@@ -24,6 +24,7 @@ class NewTaskScreen extends StatefulWidget {
 class _NewTaskScreenState extends State<NewTaskScreen> {
   TextEditingController title = TextEditingController();
   TextEditingController description = TextEditingController();
+  TextEditingController detail = TextEditingController();
 
   CalendarFormat _calendarFormat = CalendarFormat.month;
   DateTime _focusedDay = DateTime.now();
@@ -156,6 +157,25 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
                               inputType: TextInputType.multiline,
                               fillColor: kWhiteColor,
                               onChange: (value) {}),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          buildText(
+                              'Detalhes',
+                              kBlackColor,
+                              textMedium,
+                              FontWeight.bold,
+                              TextAlign.start,
+                              TextOverflow.clip),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          BuildTextField(
+                              hint: "Detalhes",
+                              controller: detail,
+                              inputType: TextInputType.multiline,
+                              fillColor: kWhiteColor,
+                              onChange: (value) {}),
                           const SizedBox(height: 20),
                           Row(
                             children: [
@@ -218,6 +238,7 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
                                           id: taskId,
                                           title: title.text,
                                           description: description.text,
+                                          detail: detail.text,
                                           startDateTime: _rangeStart,
                                           stopDateTime: _rangeEnd);
                                       context.read<TasksBloc>().add(

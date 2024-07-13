@@ -37,7 +37,8 @@ class _TaskItemViewState extends State<TaskItemView> {
                       description: widget.taskModel.description,
                       completed: !widget.taskModel.completed,
                       startDateTime: widget.taskModel.startDateTime,
-                      stopDateTime: widget.taskModel.stopDateTime);
+                      stopDateTime: widget.taskModel.stopDateTime,
+                      detail: widget.taskModel.detail);
                   context
                       .read<TasksBloc>()
                       .add(UpdateTaskEvent(taskModel: taskModel));

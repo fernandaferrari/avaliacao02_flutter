@@ -35,6 +35,7 @@ void main() {
           id: 'id',
           title: 'title',
           description: 'description',
+          detail: 'detail',
           startDateTime: DateTime.now(),
           stopDateTime: DateTime.now());
       expect(sut.tasks.length, 0);
@@ -50,6 +51,7 @@ void main() {
           id: 'id',
           title: 'title',
           description: 'description',
+          detail: 'detail',
           startDateTime: DateTime.now(),
           stopDateTime: DateTime.now());
       sut.createTask(task);
@@ -58,6 +60,7 @@ void main() {
           id: 'id',
           title: 'new title',
           description: 'new description',
+          detail: 'detail',
           startDateTime: DateTime.now(),
           stopDateTime: DateTime.now());
       sut.updateTask(updatedTask);
@@ -73,6 +76,7 @@ void main() {
           id: 'delete_task_id',
           title: 'delete_task_title',
           description: 'delete_task_description',
+          detail: 'detail',
           startDateTime: DateTime.now(),
           stopDateTime: DateTime.now());
       sut.createTask(task);
